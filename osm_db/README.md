@@ -1,6 +1,9 @@
 # Rust Solar
 
 A library for cosmic calendars. 
+
+> New Library name will be OSM_db (short for Awesome DB)
+> 
  
 ## How to Install?
 
