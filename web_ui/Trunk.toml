@@ -1,0 +1,8 @@
+
+
+[[hooks]]
+# This hook formats the html code within the view macro before trunk build's itself.
+# The code being targeted it the src file.
+stage = "pre_build"
+command = "leptosfmt"
+command_arguments = ["src"]

@@ -1,0 +1,4 @@
+target/
+justfile
+src/env.rs
+zone_solar/

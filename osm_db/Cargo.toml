@@ -1,0 +1,28 @@
+[package]
+name = "osm_db"
+version = "0.1.95"
+edition = "2021"
+repository = "https://github.com/ethanAthompson/rs-solar"
+license = "MIT"
+description = "Date-time solutions for hypothetical cosmic calendars"
+homepage = "https://github.com/ethanAthompson/rs-solar"
+categories = ["nasa", "mathematics", "astronomy", "calendar"]
+keywords = ["nasa", "nasa-hunch", "astronomy"]
+
+[dependencies]
+chrono = "0.4.31"
+chrono-tz = "0.8.5"
+icu = "1.4.0"
+icu_calendar = "1.4.0"
+displaydoc = "0.2.4"
+strum = { version = "0.26.1", features = ["strum_macros", "derive"] }
+julian_day_converter = "0.3.2"
+thiserror = "1.0.56"
+
+[features]
+default = ["planets", "asteroids", "moons", "comets", "exoplanets"]
+planets = []
+asteroids = []
+comets = []
+moons = []
+exoplanets = []
