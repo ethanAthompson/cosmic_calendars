@@ -1,0 +1,9 @@
+.new_enter {
+    background-color: #fd7e14;
+    color: black;
+}
+
+.new_enter:hover {
+    background-color: #653208;
+}
+

@@ -23,8 +23,6 @@ pub struct CosmicDateRow {
    pub id: String,
 }
 
-
-
 #[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 /// This structure represents the timezone you choose
 pub struct CosmicTimeZoneState {

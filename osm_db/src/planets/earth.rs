@@ -709,6 +709,7 @@ impl RustSolarCalendar {
             ..Default::default()
         };
 
+        // https://tc39.es/proposal-intl-era-monthcode/
         match calendar_type.as_str() {
             "gregorian" => get_icu! {gregorian date},
             "julian" => get_icu!(julian date),
@@ -727,9 +728,6 @@ impl RustSolarCalendar {
             "japanese_meiji" => get_icu!(japanese date, Era::from_str("meiji").unwrap()),
             "japanese_taisho" => get_icu!(japanese date, Era::from_str("taisho").unwrap()),
             "japanese_showa" => get_icu!(japanese date, Era::from_str("showa").unwrap()),
-            "japanese_extended" => {
-                get_icu!(japanese_extended date, Era::from_str("kansei-1789").unwrap())
-            }
             "persian" => get_icu!(persian date),
             "coptic" => get_icu!(coptic date),
             "hewbrew" => get_icu!(hebrew date),
@@ -791,9 +789,6 @@ impl RustSolarCalendar {
             }
             "japanese_showa" => {
                 transport_icu!(japanese date, Era::from_str("showa").unwrap(), conversion_type)
-            }
-            "japanese_extended" => {
-                transport_icu!(japanese_extended date, Era::from_str("kansei-1789").unwrap(),conversion_type)
             }
             "persian" => transport_icu!(persian date, conversion_type),
             "coptic" => transport_icu!(coptic date, conversion_type),

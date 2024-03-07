@@ -27,7 +27,7 @@ serde_with = "3.6.1"
 chrono-tz = "0.8.6"
 icu_calendar = "1.4.0"
 Inflector = "0.11.4"
-
+regex = "1.5"
 
 [dependencies.uuid]
 version = "1.7.0"

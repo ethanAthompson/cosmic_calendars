@@ -3367,6 +3367,7 @@ dependencies = [
  "leptos_theme",
  "log",
  "osm_db",
+ "regex",
  "reqwest",
  "rust_solar",
  "serde",
