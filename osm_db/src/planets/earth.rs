@@ -3,7 +3,76 @@ use icu::datetime::input::{DateInput, IsoTimeInput};
 use icu_calendar::{ethiopian::EthiopianEraStyle, types::Era, AsCalendar};
 use std::str::FromStr;
 
-use crate::julian::JD2NOON;
+use crate::{
+    julian::JD2NOON,
+    kepler::{Body, Date},
+    orbit::{MeanMotion, Perihelion, SemiAxis},
+};
+#[derive(Debug, Copy, Clone)]
+/// This structure represents our home planet
+pub struct Earth;
+
+// ! Please take data from main astronomy calculations for all the other bodies :-)
+impl Body for Earth {
+    fn epoch(&self) -> f64 {
+        0.0
+    }
+
+    fn mean_motion(&mut self, day: f64) -> f64 {
+        MeanMotion::by(
+            &mut MeanMotion,
+            day,
+            self.perihelion(),
+            self.orbital_period(),
+        )
+    }
+    fn orbital_eccentricity(&self) -> f64 {
+        0.0167
+    }
+
+    fn orbital_period(&self) -> f64 {
+        365.256
+    }
+
+    // Convert me into seconds pls...
+    fn rotational_period(&self) -> f64 {
+        // ^ Seconds
+        86159.9988
+
+        // ^ Decimal Hours
+        // 23.933333
+    }
+
+    fn semimajor(&self) -> f64 {
+        149.598
+    }
+
+    fn semiminor(&self) -> f64 {
+        SemiAxis(self.semimajor()).minor(self.orbital_eccentricity())
+    }
+
+    fn to_date(&mut self, julian_date: f64) -> Date {
+        let jd = crate::julian::Julian.jd2greg_named(julian_date);
+        Date {
+            era: crate::kepler::Eras::Unknown,
+            year: jd.date.year,
+            month: jd.date.month as u8,
+            day: jd.date.day as f64,
+            ls: 0.0,
+            season: "N/A".to_string(),
+        }
+    }
+
+    /// Earth's perihelion lasts 77 days according to these calculations
+    fn perihelion(&self) -> Perihelion {
+        Perihelion {
+            // Jan -> March
+            month: (1.0, 78.0),
+            ls: (0.0, 90.0),
+            perihelion: 251.0,
+        }
+    }
+}
 
 #[derive(Debug, Default, Clone, Copy)]
 /// This is an earth structure to represent an earth date
@@ -105,8 +174,8 @@ impl EarthTimeZones {
 }
 
 /** ## This is a declarative macro that abstracts the [`EarthDateTime::set_datetime`] method.
-  
-    > Takes in a location which returns the datetime + timezone for that location. 
+
+    > Takes in a location which returns the datetime + timezone for that location.
 */
 #[macro_export]
 macro_rules! set_datetimes {
@@ -696,7 +765,7 @@ impl RustSolarCalendar {
         self,
         input: EarthDate,
         // calendar_type: &'static str,
-         calendar_type: String
+        calendar_type: String,
     ) -> EarthDateTime {
         let date: NaiveDate = NaiveDate::from_ymd_opt(input.year, input.month, input.day).unwrap();
 
@@ -745,7 +814,7 @@ impl RustSolarCalendar {
     pub fn to_calendar<T: AsCalendar>(
         self,
         input: EarthDate,
-        calendar_type:String,
+        calendar_type: String,
         conversion_type: T,
     ) -> EarthDateTime {
         let date: NaiveDate = NaiveDate::from_ymd_opt(input.year, input.month, input.day).unwrap();

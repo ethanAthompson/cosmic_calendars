@@ -146,7 +146,10 @@ impl Body for Mars {
     fn rotational_period(&self) -> f64 {
         88_775.245
     }
-
+    
+    /// These numbers are derived from a formula..
+    /// 1st, find the common ratio for each day (46.1) days for the perihelion months
+    /// 2nd, find the average ls (30) ls per month
     fn perihelion(&self) -> Perihelion {
         Perihelion {
             month: (468.5, 514.6),
@@ -215,6 +218,7 @@ impl TimeZone for Martian {
     }
 
     fn body_host_ratio(&self) -> f64 {
+        // ! This is the only thing you have to change physically
         Mars.rotational_period() / EARTH_ROTATIONAL_PERIOD
     }
 

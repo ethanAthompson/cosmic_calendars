@@ -1,6 +1,6 @@
 /// Contains information provided by `[rust_solar]` crate.
 pub mod info;
-
+pub mod all;
 
 use leptos::*;
 use leptos_meta::*;

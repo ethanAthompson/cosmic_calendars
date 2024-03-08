@@ -1,3 +1,4 @@
+use crate::data::card::all::data_abstraction;
 use crate::theme::image::AdjustThemedImage;
 use crate::time::martian::set_mars_tz;
 use leptos::*;
@@ -6,8 +7,7 @@ use leptos_router::*;
 use leptos_theme::{use_theme, ThemeProvider};
 use leptos_use::core::Position;
 use leptos_use::{use_draggable_with_options, use_window, UseDraggableOptions, UseDraggableReturn};
-use rust_solar::kepler::Body;
-use rust_solar::orbit::{self, Perihelion};
+use osm_db::orbit::Perihelion;
 
 #[component]
 /// This component contains an overview of moons supported.
@@ -26,31 +26,20 @@ pub fn Page(name: &'static str) -> impl IntoView {
     let orbit_type = create_rw_signal("".to_string());
     let dark_topology_map = create_rw_signal("".to_string());
     let light_topology_map = create_rw_signal("".to_string());
-    let eccentric_anomaly_data: RwSignal<Vec<f64>> = create_rw_signal(Vec::new());
 
-    match name {
-        "mars" => {
-            let sol = set_mars_tz().date.day;
-            // let mars_anomaly =
-            obe.set(rust_solar::planets::mars::Mars.orbital_eccentricity());
-            orbital_period.set(rust_solar::planets::mars::Mars.orbital_period());
-            rotational_period.set(rust_solar::planets::mars::Mars.rotational_period());
-            perihelion.set(rust_solar::planets::mars::Mars.perihelion());
-            semimajor.set(rust_solar::planets::mars::Mars.semimajor());
-            semiminor.set(rust_solar::planets::mars::Mars.semiminor());
-            mean_motion.set(rust_solar::planets::mars::Mars.mean_motion(sol));
-            orbit_type.set(format!(
-                "{:?}",
-                rust_solar::orbit::Type::shape(&orbit::Type::Unknown, obe.get())
-            ));
-            dark_topology_map.set("/public/images/solar/dark-mars-tz.jpeg".to_string());
-            light_topology_map.set("/public/images/solar/light-mars-tz.png".to_string());
-            // eccentric_anomaly_data.set();
-        }
-        _ => {
-            //  todo!()
-        }
-    }
+    data_abstraction(
+        name,
+        obe,
+        orbital_period,
+        rotational_period,
+        perihelion,
+        semimajor,
+        semiminor,
+        mean_motion,
+        orbit_type,
+        dark_topology_map,
+        light_topology_map,
+    );
 
     view! {
         <div class="bg-transparent container-xxl bd-gutter flex-wrap flex-lg-nowrap py-5">

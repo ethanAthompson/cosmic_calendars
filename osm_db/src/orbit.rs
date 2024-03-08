@@ -63,6 +63,8 @@ impl Perihelion {
     }
 
     /// The time of the perihelion within the orbit
+    /// 
+    /// Converts degrees to decimal..
     pub fn time(&mut self) -> f64 {
         radians_in_circle() * (1.0 - self.perihelion / 360.0)
     }

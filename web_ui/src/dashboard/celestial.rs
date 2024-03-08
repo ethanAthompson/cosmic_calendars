@@ -1,3 +1,5 @@
+pub mod zones;
+
 use leptos::wasm_bindgen::JsCast;
 use leptos::*;
 use leptos_meta::*;
@@ -15,6 +17,7 @@ use crate::utils::celestial::direct_tzname_image;
 use crate::time::martian::LocalMars;
 use crate::time::earth::ExtraLocaleEarth;
 use crate::utils::filter::filter_list;
+use crate::dashboard::celestial::zones::Timezones;
 
 #[component]
 /// This component is the list of references that you see.
@@ -68,18 +71,3 @@ pub fn CelestialSearcher() -> impl IntoView {
     }
 }
 
-#[component]
-/// This component displays timezones from IANA DB + Celestial Timezones from RSAR DB
-pub fn Timezones() -> impl IntoView {
-    view! {
-        <ul
-            id="celestial-timezones-main"
-            class="list-group list-group-flush text-center rounded-bottom overflow-y-scroll "
-            style="max-height: 350px;"
-        >
-
-            <LocalMars/>
-            <ExtraLocaleEarth/>
-        </ul>
-    }
-}
