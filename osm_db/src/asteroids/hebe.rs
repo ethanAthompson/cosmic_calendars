@@ -1,7 +1,7 @@
 use crate::{
     julian::JD2NOON,
     kepler::{Body, Date, DateTime, HourType, Time, TimeZone},
-    orbit::{MeanMotion, Perihelion, SemiAxis},
+    orbit::{MeanMotion, Perihelion, SemiAxis},planets::EARTH_ROTATIONAL_PERIOD
 };
 
 use chrono::Datelike;
@@ -104,4 +104,87 @@ pub enum Hebeian {
     #[strum(props(Code = "DMT", Name = "Fifth Depression Mount Time", Offset = "3.65", East = "330", West = "360"))]
     /// Hebe Coordinated Time + 5
     HeTCp5,
+}
+
+
+impl TimeZone for Hebeian {
+    fn millis(&self) -> f64 {
+        chrono::Utc::now().timestamp_millis() as f64
+    }
+
+    fn offset(&self) -> f64 {
+        self.get_str("Offset").unwrap().parse::<f64>().expect("Offset to be established")
+    }
+
+    fn julian_offset(&self) -> f64 {
+        JULIAN_DAY_UNIX_EPOCH_DAYS - self.get_str("Offset").unwrap().parse::<f64>().expect("Offset to be established") / 24.0
+    }
+
+    fn julian_date_universal_time(&self) -> f64 {
+        let number_of_days: f64 = 8.64 * 10.0_f64.powf(7.0);
+
+        // coordinates the offset instead of JULIAN_DAY_UNIX_EPOCH_DAYS alone
+        self.julian_offset() + (self.millis() / number_of_days)
+    }
+
+    fn body_host_ratio(&self) -> f64 {
+        Hebe.rotational_period() / EARTH_ROTATIONAL_PERIOD
+    }
+
+    fn julian_date_terrestial_time(&self) -> f64 {
+        // leap seconds since January 1st, 2017
+        let leap_seconds = 37.0 + 32.184;
+
+        self.julian_date_universal_time() + (leap_seconds) / EARTH_ROTATIONAL_PERIOD
+    }
+
+    fn julian_date_2000_time(&self) -> f64 {
+        // number of fractional days since noon on jan 1, 2000
+        self.julian_date_terrestial_time() - JD2NOON
+    }
+
+    /* Adjust this to Jupiter standards */
+    fn day_date(&self) -> f64 {
+        let reference = self.julian_date_2000_time() - 4.5;
+
+        // goes backwards to december 29th 1873
+        let midday_positive = 44_796.0;
+
+        // the adjustment by Mars24 site
+        let adjustment = 0.00096;
+
+        (reference / self.body_host_ratio()) + midday_positive - adjustment
+    }
+
+    fn coordinated_time(&self) -> f64 {
+        let msd = self.day_date();
+
+        (24.0 * msd) % 24.0
+    }
+
+    fn fractional_hour(&self) -> f64 {
+        let msd = self.day_date();
+
+        msd.fract()
+    }
+
+    fn fractional_minute(&self) -> f64 {
+        (24.0 * self.fractional_hour()).fract()
+    }
+
+    fn now(&self) -> Time {
+        let hour = (24.0 * self.fractional_hour()).floor();
+        let minute = (60.0 * self.fractional_minute()).floor();
+        let second = 60.0 * (60.0 * self.fractional_minute()).fract();
+
+        Time {
+            hour: hour as i32,
+            minute: minute as u8,
+            second: second as u8,
+            code: self.get_str("Code").unwrap().to_string(),
+            name: self.get_str("Name").unwrap().to_string(),
+            offset_name: self.as_ref().to_string(),
+            hour_type: HourType::new(&HourType::Unknown, hour as u8),
+        }
+    }
 }

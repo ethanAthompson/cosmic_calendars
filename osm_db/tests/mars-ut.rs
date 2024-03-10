@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod tests {
     use chrono::Datelike;
-    use rust_solar::{
+    use osm_db::{
         conversions::military2standard,
         julian::Julian,
         kepler::{Body, TimeZone},

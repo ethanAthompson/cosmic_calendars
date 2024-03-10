@@ -1,7 +1,7 @@
 use crate::{
     julian::JD2NOON,
     kepler::{Body, Date, DateTime, HourType, Time, TimeZone},
-    orbit::{MeanMotion, Perihelion, SemiAxis},
+    orbit::{MeanMotion, Perihelion, SemiAxis},planets::EARTH_ROTATIONAL_PERIOD
 };
 
 use chrono::Datelike;

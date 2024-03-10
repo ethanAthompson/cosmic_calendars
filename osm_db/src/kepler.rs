@@ -246,3 +246,4 @@ impl HourType {
         .to_string()
     }
 }
+

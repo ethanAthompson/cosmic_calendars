@@ -1,7 +1,7 @@
 use crate::{
     julian::JD2NOON,
     kepler::{Body, Date, DateTime, HourType, Time, TimeZone},
-    orbit::{MeanMotion, Perihelion, SemiAxis},
+    orbit::{MeanMotion, Perihelion, SemiAxis},planets::EARTH_ROTATIONAL_PERIOD
 };
 
 use chrono::Datelike;
@@ -53,3 +53,4 @@ impl Body for Davida {
         Date::default().compute(julian_date, self.epoch(), self.rotational_period(), self.perihelion(), self.semimajor(), self.orbital_eccentricity(), self.orbital_period())
     }
 }
+
