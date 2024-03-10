@@ -6,6 +6,12 @@
 /// (Think of this function as a counter-clockwise clock..) 
 /// This function is focused to be used within leptos applications..
 /// 
+/// # Big Inspiration
+/// 
+/// 
+/// https://www-mars.lmd.jussieu.fr/mars/time/mars_date_to_earth_date.html
+/// 
+/// 
 pub fn mega_converter(host: String, year: f64, ls: f64) -> String {
     match host.as_str() {
         "mars" => {

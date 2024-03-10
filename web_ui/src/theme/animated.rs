@@ -62,6 +62,8 @@ pub fn DarkVideo() -> impl IntoView {
             muted="true"
             playsinline=true
             data-bs-theme="dark"
+            // ! This may cause some issues?
+            class=" user-select-none"
         >
             <source src="/public/videos/dark-tunnel_-_26475 (1080p).MP4" type="video/mp4"/>
         </video>
@@ -79,6 +81,8 @@ pub fn LightVideo() -> impl IntoView {
             muted="true"
             playsinline=true
             data-bs-theme="light"
+            // ! This may cause some issues?
+            class=" user-select-none"
         >
             <source src="/public/videos/light-tunnel_-_26475 (1080p).mp4" type="video/mp4"/>
         </video>

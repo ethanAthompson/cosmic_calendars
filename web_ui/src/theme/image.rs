@@ -81,7 +81,7 @@ pub fn DarkImage() -> impl IntoView {
         <img
             data-bs-theme="dark"
             id="dark-theme-image"
-            class="img-fluid main-background-image"
+            class="img-fluid main-background-image user-select-none"
             src="/public/images/background/2dark-ver-pawel-czerwinski-F0yDf-GBjMQ-unsplash.jpg"
         />
     }
@@ -94,7 +94,7 @@ pub fn LightImage() -> impl IntoView {
         <img
             data-bs-theme="light"
             id="light-theme-image"
-            class="img-fluid main-background-image"
+            class="img-fluid main-background-image user-select-none"
             src="/public/images/background/pawel-czerwinski-F0yDf-GBjMQ-unsplash.jpg"
         />
     }

@@ -1,0 +1,9 @@
+# rustfmt.toml
+
+# Set the max width for formatting to fit on a single line
+max_width = 500
+
+# Configure attribute formatting
+[attribute]
+# If true, places inner attributes on the same line as the item.
+inline_attribute = true

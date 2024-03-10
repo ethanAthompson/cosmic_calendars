@@ -14,117 +14,67 @@ use super::EARTH_ROTATIONAL_PERIOD;
 /// This structure represents the fourth planet from the sun
 pub struct Mars;
 
+/*
+    ! You can name the timezones by a specific valley or mountain (! this is it)
+*/
+
 #[derive(Default, Debug, Copy, Clone, AsRefStr, EnumProperty, VariantArray)]
 /// This structure represents the martian timezone
 ///
 /// Offset is in 1 decisol, (-2.5 west, +2.5 east)
 ///
-/// There is no DST on mars
+/// There is no DST on mars; bad idea..
 ///
 /// 1 sol = 25 hours
 /// 1 decisol = 2.5 hours
 ///
 /// 12.5 + 12.5 = 25
 /// MTC-5 to MTC+5 is 25 hours
+/// 
+/// # Naming Convention:
+/// 
+/// Mars is divided into 11 time zones, denoted by MTC-5 to MTC+5. 
+/// “MTC” denotes Coordinated Mars Time,
+/// the Martian equivalent of UTC (Universal Coordinated Time). 
+/// Some “friendly” names and codes for the time zones are suggested, 
+/// based on the dominant areographical feature in each time zone.
+/// 
+/// East and West are determined by the width of the timezone boundary.
+/// 
+/// MTC-5 lasts from -180 East to -162 West 
 pub enum Martian {
-    #[strum(props(
-        Code = "AMT",
-        Name = "Amazonis Time",
-        Offset = "-12.5",
-        East = "-180",
-        West = "-162"
-    ))]
+    #[strum(props(Code = "AMT", Name = "Amazonis Time", Offset = "-12.5", East = "-180", West = "-162"))]
     /// Mars Coordinated Time - 5
     MTCn5,
-    #[strum(props(
-        Code = "OT",
-        Name = "Olympus Time",
-        Offset = "-10.0",
-        East = "-162",
-        West = "-126"
-    ))]
+    #[strum(props(Code = "OT", Name = "Olympus Time", Offset = "-10.0", East = "-162", West = "-126"))]
     /// Mars Coordinated Time - 4
     MTCn4,
-    #[strum(props(
-        Code = "TT",
-        Name = "Tharsis Time",
-        Offset = "-7.5",
-        East = "-126",
-        West = "-90"
-    ))]
+    #[strum(props(Code = "TT", Name = "Tharsis Time", Offset = "-7.5", East = "-126", West = "-90"))]
     /// Mars Coordinated Time - 3
     MTCn3,
-    #[strum(props(
-        Code = "MT",
-        Name = "Marineris Time",
-        Offset = "-5.0",
-        East = "-90",
-        West = "-54"
-    ))]
+    #[strum(props(Code = "MT", Name = "Marineris Time", Offset = "-5.0", East = "-90", West = "-54"))]
     /// Mars Coordinated Time - 2
     MTCn2,
-    #[strum(props(
-        Code = "AGT",
-        Name = "Argyre Time",
-        Offset = "-2.5",
-        East = "-54",
-        West = "-18"
-    ))]
+    #[strum(props(Code = "AGT", Name = "Argyre Time", Offset = "-2.5", East = "-54", West = "-18"))]
     /// Mars Coordinated Time - 1
     MTCn1,
     #[default]
-    #[strum(props(
-        Code = "NT",
-        Name = "Noachis Time",
-        Offset = "0.0",
-        East = "-18",
-        West = "18"
-    ))]
+    #[strum(props(Code = "NT", Name = "Noachis Time", Offset = "0.0", East = "-18", West = "18"))]
     /// Mars Coordinated Time
     MTC,
-    #[strum(props(
-        Code = "ABT",
-        Name = "Arabia Time",
-        Offset = "2.5",
-        East = "18",
-        West = "54"
-    ))]
+    #[strum(props(Code = "ABT", Name = "Arabia Time", Offset = "2.5", East = "18", West = "54"))]
     /// Mars Coordinated Time + 1
     MTCp1,
-    #[strum(props(
-        Code = "HT",
-        Name = "Hellas Time",
-        Offset = "5.0",
-        East = "54",
-        West = "90"
-    ))]
+    #[strum(props(Code = "HT", Name = "Hellas Time", Offset = "5.0", East = "54", West = "90"))]
     /// Mars Coordinated Time + 2
     MTCp2,
-    #[strum(props(
-        Code = "UT",
-        Name = "Utopia Time",
-        Offset = "7.5",
-        East = "90",
-        West = "126"
-    ))]
+    #[strum(props(Code = "UT", Name = "Utopia Time", Offset = "7.5", East = "90", West = "126"))]
     /// Mars Coordinated Time + 3
     MTCp3,
-    #[strum(props(
-        Code = "ET",
-        Name = "Elysium Time",
-        Offset = "10.0",
-        East = "126",
-        West = "162"
-    ))]
+    #[strum(props(Code = "ET", Name = "Elysium Time", Offset = "10.0", East = "126", West = "162"))]
     /// Mars Coordinated Time + 4
     MTCp4,
-    #[strum(props(
-        Code = "ACT",
-        Name = "Arcadia Time",
-        Offset = "12.5",
-        East = "162",
-        West = "180"
-    ))]
+    #[strum(props(Code = "ACT", Name = "Arcadia Time", Offset = "12.5", East = "162", West = "180"))]
     /// Mars Coordinated Time + 5
     MTCp5,
 }
@@ -146,16 +96,12 @@ impl Body for Mars {
     fn rotational_period(&self) -> f64 {
         88_775.245
     }
-    
+
     /// These numbers are derived from a formula..
     /// 1st, find the common ratio for each day (46.1) days for the perihelion months
     /// 2nd, find the average ls (30) ls per month
     fn perihelion(&self) -> Perihelion {
-        Perihelion {
-            month: (468.5, 514.6),
-            ls: (240.0, 270.0),
-            perihelion: 251.0,
-        }
+        Perihelion { month: (468.5, 514.6), ls: (240.0, 270.0), perihelion: 251.0 }
     }
 
     fn semimajor(&self) -> f64 {
@@ -167,24 +113,11 @@ impl Body for Mars {
     }
 
     fn mean_motion(&mut self, day: f64) -> f64 {
-        MeanMotion::by(
-            &mut MeanMotion,
-            day,
-            self.perihelion(),
-            self.orbital_period(),
-        )
+        MeanMotion::by(&mut MeanMotion, day, self.perihelion(), self.orbital_period())
     }
 
     fn to_date(&mut self, julian_date: f64) -> Date {
-        Date::default().compute(
-            julian_date,
-            self.epoch(),
-            self.rotational_period(),
-            self.perihelion(),
-            self.semimajor(),
-            self.orbital_eccentricity(),
-            self.orbital_period(),
-        )
+        Date::default().compute(julian_date, self.epoch(), self.rotational_period(), self.perihelion(), self.semimajor(), self.orbital_eccentricity(), self.orbital_period())
     }
 }
 
@@ -194,20 +127,11 @@ impl TimeZone for Martian {
     }
 
     fn offset(&self) -> f64 {
-        self.get_str("Offset")
-            .unwrap()
-            .parse::<f64>()
-            .expect("Offset to be established")
+        self.get_str("Offset").unwrap().parse::<f64>().expect("Offset to be established")
     }
 
     fn julian_offset(&self) -> f64 {
-        JULIAN_DAY_UNIX_EPOCH_DAYS
-            - self
-                .get_str("Offset")
-                .unwrap()
-                .parse::<f64>()
-                .expect("Offset to be established")
-                / 24.0
+        JULIAN_DAY_UNIX_EPOCH_DAYS - self.get_str("Offset").unwrap().parse::<f64>().expect("Offset to be established") / 24.0
     }
 
     fn julian_date_universal_time(&self) -> f64 {
@@ -285,12 +209,7 @@ impl Mars {
     /// This method was inspired by chrono, so you can see the live mars date
     pub fn now(&mut self, offset: Martian) -> DateTime {
         let now = chrono::Utc::now();
-        let now = crate::julian::Julian.get_jd(
-            now.year(),
-            now.month() as i32,
-            now.day() as i32,
-            Martian::offset(&offset),
-        );
+        let now = crate::julian::Julian.get_jd(now.year(), now.month() as i32, now.day() as i32, Martian::offset(&offset));
 
         let date = self.to_date(now);
         let time = Martian::now(&offset);
