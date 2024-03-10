@@ -16,3 +16,11 @@ pub mod juno;
 pub mod pallas;
 /// This module contains vesta calculations
 pub mod vesta;
+
+
+/* Big help in data
+
+https://nssdc.gsfc.nasa.gov/planetary/factsheet/asteroidfact.html
+
+
+*/

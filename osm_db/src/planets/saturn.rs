@@ -15,6 +15,47 @@ use super::EARTH_ROTATIONAL_PERIOD;
 /// This structure represents the sixth planet from the sun
 pub struct Saturn;
 
+impl Body for Saturn {
+    /// A.D 1997 October 15, 12:00:00
+    fn epoch(&self) -> f64 {
+        2450737e6
+    }
+
+    fn orbital_eccentricity(&self) -> f64 {
+        0.0565
+    }
+
+    fn orbital_period(&self) -> f64 {
+        10_756.00
+    }
+
+    fn rotational_period(&self) -> f64 {
+        37_980.00
+    }
+
+    /// These numbers are derived from a formula..
+    /// 1st, find the common ratio for each day (46.1) days for the perihelion months
+    /// 2nd, find the average ls (30) ls per month
+    fn perihelion(&self) -> Perihelion {
+        Perihelion { month: (468.5, 514.6), ls: (240.0, 270.0), perihelion: 251.0 }
+    }
+
+    fn semimajor(&self) -> f64 {
+        1_432.041	
+    }
+
+    fn semiminor(&self) -> f64 {
+        SemiAxis(self.semimajor()).minor(self.orbital_eccentricity())
+    }
+
+    fn mean_motion(&mut self, day: f64) -> f64 {
+        MeanMotion::by(&mut MeanMotion, day, self.perihelion(), self.orbital_period())
+    }
+
+    fn to_date(&mut self, julian_date: f64) -> Date {
+        Date::default().compute(julian_date, self.epoch(), self.rotational_period(), self.perihelion(), self.semimajor(), self.orbital_eccentricity(), self.orbital_period())
+    }
+}
 
 /// 1.07
 #[derive(Default, Debug, Copy, Clone, AsRefStr, EnumProperty, VariantArray)]

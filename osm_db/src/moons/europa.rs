@@ -12,6 +12,48 @@ use strum::{AsRefStr, EnumProperty, VariantArray};
 /// This structure represents the second planet from the sun
 pub struct Europa;
 
+impl Body for Europa {
+    /// A.D 1610 January 7, 12:00:00
+    fn epoch(&self) -> f64 {
+        2309107e6
+    }
+
+    fn orbital_eccentricity(&self) -> f64 {
+        0.0094
+    }
+
+    fn orbital_period(&self) -> f64 {
+        3.50
+    }
+
+    fn rotational_period(&self) -> f64 {
+        302_400.00
+    }
+
+    /// These numbers are derived from a formula..
+    /// 1st, find the common ratio for each day (46.1) days for the perihelion months
+    /// 2nd, find the average ls (30) ls per month
+    fn perihelion(&self) -> Perihelion {
+        Perihelion { month: (468.5, 514.6), ls: (240.0, 270.0), perihelion: 251.0 }
+    }
+
+    fn semimajor(&self) -> f64 {
+        671.1
+    }
+
+    fn semiminor(&self) -> f64 {
+        SemiAxis(self.semimajor()).minor(self.orbital_eccentricity())
+    }
+
+    fn mean_motion(&mut self, day: f64) -> f64 {
+        MeanMotion::by(&mut MeanMotion, day, self.perihelion(), self.orbital_period())
+    }
+
+    fn to_date(&mut self, julian_date: f64) -> Date {
+        Date::default().compute(julian_date, self.epoch(), self.rotational_period(), self.perihelion(), self.semimajor(), self.orbital_eccentricity(), self.orbital_period())
+    }
+}
+
 /// Similar format as mars..
 ///
 /// The difference is its from +/- 240 instead of 180..

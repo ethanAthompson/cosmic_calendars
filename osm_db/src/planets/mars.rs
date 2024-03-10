@@ -105,7 +105,7 @@ impl Body for Mars {
     }
 
     fn semimajor(&self) -> f64 {
-        1.52
+        1.52366231
     }
 
     fn semiminor(&self) -> f64 {
