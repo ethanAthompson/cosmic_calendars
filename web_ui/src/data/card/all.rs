@@ -57,6 +57,7 @@ pub fn data_abstraction(
             dark_topology_map.set("/public/images/solar/earth_ls.jpg".to_string());
             light_topology_map.set("/public/images/solar/earth_ls.jpg".to_string());
         }
+        /* Please Update all of the supported celestial bodies when you're done.. <See What's Supported> Button */
         _ => {
             //  todo!()
         }

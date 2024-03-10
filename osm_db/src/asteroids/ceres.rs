@@ -1,0 +1,56 @@
+use crate::{
+    julian::JD2NOON,
+    kepler::{Body, Date, DateTime, HourType, Time, TimeZone},
+    orbit::{MeanMotion, Perihelion, SemiAxis},
+};
+
+use chrono::Datelike;
+use julian_day_converter::JULIAN_DAY_UNIX_EPOCH_DAYS;
+use strum::{AsRefStr, EnumProperty, VariantArray};
+
+#[derive(Debug, Copy, Clone)]
+/// This structure represents the second planet from the sun
+pub struct Ceres;
+
+/// Similar format as mars..
+///
+#[derive(Default, Debug, Copy, Clone, AsRefStr, EnumProperty, VariantArray)]
+pub enum Ceresian {
+    #[strum(props(Code = "HIT", Name = "Haulani Time", Offset = "-4.55", East = "0", West = "30"))]
+    /// Ceres Coordinated Time - 5
+    CTCn5,
+    #[strum(props(Code = "ZIT", Name = "Zadeni Time", Offset = "-3.64", East = "30", West = "60"))]
+    /// Ceres Coordinated Time - 4
+    CTCn4,
+    #[strum(props(Code = "VST", Name = "Vintonus Time", Offset = "-2.73", East = "60", West = "90"))]
+    /// Ceres Coordinated Time - 3
+    CTCn3,
+    #[strum(props(Code = "KNT", Name = "Kerwan Time", Offset = "-1.82", East = "90", West = "120"))]
+    /// Ceres Coordinated Time - 2
+    CTCn2,
+    #[strum(props(Code = "DUT", Name = "Dantu Time", Offset = "-0.91", East = "120", West = "150"))]
+    /// Ceres Coordinated Time - 1
+    CTCn1,
+    #[default]
+    #[strum(props(Code = "TUT", Name = "Toharu Time", Offset = "0.0", East = "150", West = "180"))]
+    /// Ceres Coordinated Time
+    CTC,
+    #[strum(props(Code = "EUT", Name = "Ezinu Time", Offset = "0.91", East = "180", West = "210"))]
+    /// Ceres Coordinated Time + 1
+    CTCp1,
+    #[strum(props(Code = "ORT", Name = "Occator Time", Offset = "1.82", East = "210", West = "240"))]
+    /// Ceres Coordinated Time + 2
+    CTCp2,
+    #[strum(props(Code = "UAT", Name = "Urvara Time", Offset = "2.73", East = "240", West = "270"))]
+    /// Ceres Coordinated Time + 3
+    CTCp3,
+    #[strum(props(Code = "YET", Name = "Yalode Time", Offset = "3.64", East = "270", West = "300"))]
+    /// Ceres Coordinated Time + 4
+    CTCp4,
+    #[strum(props(Code = "FOT", Name = "Fejokoo Time", Offset = "4.55", East = "300", West = "330"))]
+    /// Ceres Coordinated Time + 5
+    CTCp5,
+    #[strum(props(Code = "ROT", Name = "Rongo Time", Offset = "5.46", East = "330", West = "360"))]
+    /// Ceres Coordinated Time + 5
+    CTCp6,
+}
