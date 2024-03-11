@@ -28,6 +28,7 @@ use rust_solar::planets::earth::EarthDateTime;
 use crate::stores::get_state;
 use crate::stores::states::CosmicTimeZoneState;
 use crate::time::martian::set_mars_tz;
+use crate::time::mercury::set_mercury_tz;
 
 #[component]
 /// This component represents the standard way of coordinating time given the users' choice
@@ -62,21 +63,40 @@ pub fn LocalTimer() -> impl IntoView {
                 }
             }
 
-            if state.0.get().name == "Martian" {
-                let now = set_mars_tz();
-                let hour = rust_solar::conversions::military2standard(now.time.hour);
-
-                let date = format!(
-                    "{}/{}/{}, {:.2}° ",
-                    now.date.year, now.date.month, now.date.day, now.date.ls
-                );
-
-                let standard = format!(
-                    "{}:{}:{} {} {} ",
-                    hour.0, now.time.minute, now.time.second, hour.1, now.time.name
-                );
-
-                local_str.update(|v| *v = format!("{}{}", date, standard));
+            match state.0.get().name.as_str() {
+                "Martian" => {
+                    let now = set_mars_tz();
+                    let hour = osm_db::conversions::military2standard(now.time.hour);
+    
+                    let date = format!(
+                        "{}/{}/{}, {:.2}° ",
+                        now.date.year, now.date.month, now.date.day, now.date.ls
+                    );
+    
+                    let standard = format!(
+                        "{}:{}:{} {} {} ",
+                        hour.0, now.time.minute, now.time.second, hour.1, now.time.name
+                    );
+    
+                    local_str.update(|v| *v = format!("{}{}", date, standard));
+                },
+                "Mercurian" => {
+                    let now = set_mercury_tz();
+                    let hour = osm_db::conversions::military2standard(now.time.hour);
+    
+                    let date = format!(
+                        "{}/{}/{}, {:.2}° ",
+                        now.date.year, now.date.month, now.date.day, now.date.ls
+                    );
+    
+                    let standard = format!(
+                        "{}:{}:{} {} {} ",
+                        hour.0, now.time.minute, now.time.second, hour.1, now.time.name
+                    );
+    
+                    local_str.update(|v| *v = format!("{}{}", date, standard));
+                }
+                _ => {}
             }
         },
         1000,

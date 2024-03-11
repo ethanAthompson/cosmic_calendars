@@ -1,50 +1,50 @@
-# Rust Solar
+# Awesome Database (OSM DB)
 
 A library for cosmic calendars. 
 
-> New Library name will be OSM_db (short for Awesome DB)
-> 
- 
-## How to Install?
+<!-- ## How to Install? 
 
 ```sh
 cargo add rust solar -F asteroids planets moons exoplanets comets
-```
+``` 
+
+-->
 
 ## Note
  * This library is compatible with leptos as it's used in [SuperZone](https://superzone.vercel.app/)
-
+ * The old library Rust Solar will be converged with Awsome Database in the future!
+ * 
 ## Supporting Bodies
 
 
 ### Asteroids
-- [ ] Ceres
-- [ ] Vesta
+- [x] Ceres
+- [x] Vesta
 - [ ] Pallas
 - [ ] Hygiea
 - [ ] Europa
 - [ ] Davida
 - [ ] Juno
-- [ ] Eros
-- [ ] Hebe
+- [x] Eros
+- [x] Hebe
 
 ### Planets
 - [x] Earth
 - [x] Mars
-- [ ] Mercury
-- [ ] Neptune
-- [ ] Jupiter
-- [ ] Saturn
-- [ ] Pluto
-- [ ] Venus
-- [ ] Uranus
+- [x] Mercury
+- [x] Neptune
+- [x] Jupiter
+- [x] Saturn
+- [x] Pluto
+- [x] Venus
+- [x] Uranus
 
 ### Moons
-- [ ] Titan
-- [ ] Ganymede
-- [ ] Io
-- [ ] Europa
-- [ ] Luna
+- [x] Titan
+- [x] Ganymede
+- [x] Io
+- [x] Europa
+- [x] Luna
 
 ### Exo Planets
 - [ ] Kepler22b

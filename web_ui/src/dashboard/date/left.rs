@@ -34,6 +34,7 @@ use osm_db::planets::earth::EarthTimeZones;
 use osm_db::planets::earth::RustSolarCalendar;
 use osm_db::planets::mars::Mars;
 use osm_db::planets::mars::Martian;
+use osm_db::planets::mercury::Mercury;
 use serde::{Deserialize, Serialize};
 use std::borrow::BorrowMut;
 use strum::EnumProperty;
@@ -99,6 +100,29 @@ pub fn Page() -> impl IntoView {
                         12.0,
                     );
                     let date = Mars.to_date(jd);
+
+                    celestial_cosmic_dates.1.update(|t| {
+                        t.push(CosmicDateRow {
+                            host: host.get(),
+                            cal: calendar.get(),
+                            date: format!(
+                                "{}/{}/{}, {:.2}° in {}",
+                                date.year, date.month, date.day, date.ls, date.season
+                            ),
+                            id: uuid::Uuid::new_v4().to_string(),
+                        });
+                    });
+                }
+                "Mercury" => {
+                    logging::log!("Mars Date!");
+                    // ! Look here for conversion!.
+                    let jd = Julian.get_jd(
+                        year.get().parse::<i32>().unwrap(),
+                        month.get().parse::<i32>().unwrap(),
+                        day.get().parse::<i32>().unwrap(),
+                        12.0,
+                    );
+                    let date = Mercury.to_date(jd);
 
                     celestial_cosmic_dates.1.update(|t| {
                         t.push(CosmicDateRow {

@@ -25,6 +25,8 @@ use crate::utils::colors::colored_class;
 #[component]
 /// This component represents a certain item within the search (its' CelestialItem because the name of the project starts with celestial )
 pub fn CelestialItem(data: SearchedCelestialBodyData) -> impl IntoView {
+    let tz_num = create_rw_signal(data.number_of_timezones.clone());
+
     view! {
         <span id=format!("{}", data.name.clone())>
             <A
@@ -34,7 +36,19 @@ pub fn CelestialItem(data: SearchedCelestialBodyData) -> impl IntoView {
                 <div class="hstack gap-3">
                     <h5 class="me-auto">{data.name.clone()}</h5>
                     <span class="ms-auto badge rounded-pill text-bg-danger">
-                        {data.number_of_timezones.clone()} timezones
+                        <Show
+                            when=move || { tz_num.get() == "0".to_string() }
+                            fallback=move || {
+                                view! {
+                                    {data.number_of_timezones.clone()}
+                                    <span class="mx-1">Timezones</span>
+                                }
+                            }
+                        >
+
+                            "Timezones N/A"
+                        </Show>
+
                     </span>
                 </div>
                 <p class="lead">{data.description.clone()}</p>

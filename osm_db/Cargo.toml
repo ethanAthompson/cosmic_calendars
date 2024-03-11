@@ -1,6 +1,6 @@
 [package]
 name = "osm_db"
-version = "0.1.95"
+version = "0.3.0"
 edition = "2021"
 repository = "https://github.com/ethanAthompson/rs-solar"
 license = "MIT"

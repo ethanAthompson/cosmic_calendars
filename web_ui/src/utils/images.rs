@@ -19,6 +19,7 @@ use crate::stores::states::FeedbackSearchStates;
         "Jupiter" => "https://www.nasa.gov/wp-content/uploads/2023/03/52303461859_0db4d9b739_o.png",
         "Neptune" => "https://www.nasa.gov/wp-content/uploads/2023/03/pia01492-main.jpg",
         "Ganymede" => "https://photojournal.jpl.nasa.gov/jpegMod/PIA01666_modest.jpg",
+        "Mercury" => "https://science.nasa.gov/wp-content/uploads/2023/04/EW0108829708G4release_mercury-jpg.webp?w=1280&format=webp",
         _ => "https://www.nasa.gov/wp-content/uploads/2024/02/53495965723-5c5c821f78-o.png?resize=1536,859"
     }.to_string()
 }

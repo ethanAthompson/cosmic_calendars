@@ -71,8 +71,8 @@ pub fn SearchBar() -> impl IntoView {
                 <input
                     type="text"
                     class="focus-ring focus-ring-success form-control py-2 rounded-0"
-                    placeholder="Search IANA + RSAR Databases"
-                    aria-label="Search IANA + RSAR Databases"
+                    placeholder="Search IANA + OSM Databases"
+                    aria-label="Search IANA + OSM Databases"
                     aria-describedby="SearchModalLabel-wrapping"
                     on:input=filter_search
                     prop:value=battery

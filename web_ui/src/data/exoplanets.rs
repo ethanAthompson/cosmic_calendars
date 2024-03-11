@@ -13,9 +13,9 @@ pub fn ExoPlanetRoutes() -> impl IntoView  {
     view! {
         <Route path="exo-planets" view=move || view! { <Outlet/> }>
             <Route
-                path="kepler-22b"
+                path="kepler-62b"
                 view=move || {
-                    view! { <Page name="kepler-22b"/> }
+                    view! { <Page name="kepler-62b"/> }
                 }
             />
 
@@ -27,9 +27,9 @@ pub fn ExoPlanetRoutes() -> impl IntoView  {
             />
 
             <Route
-                path="kepler-442b"
+                path="kepler-62e"
                 view=move || {
-                    view! { <Page name="kepler-442b"/> }
+                    view! { <Page name="kepler-62e"/> }
                 }
             />
 
@@ -47,21 +47,21 @@ pub fn Overview() -> impl IntoView {
             <ul class="list-group grid gap-3">
                 <A
                     class="btn btn-lg btn-outline-warning list-group-item display-5"
-                    href="kepler-22b"
+                    href="kepler-62b"
                 >
-                    Kepler 22b
+                    "Kepler 62b"
                 </A>
                 <A
                     class="btn btn-lg btn-outline-warning list-group-item display-5"
                     href="kepler-186f"
                 >
-                    Kepler 186f
+                    "Kepler 186f"
                 </A>
                 <A
                     class="btn btn-lg btn-outline-warning list-group-item display-5"
-                    href="kepler-442b"
+                    href="kepler-62e"
                 >
-                    Kepler 442b
+                    "Kepler 62e"
                 </A>
 
                 <A href="../" class="btn btn-lg btn-outline-danger">

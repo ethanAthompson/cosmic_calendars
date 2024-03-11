@@ -15,6 +15,7 @@ use crate::utils::celestial::direct_tzname_image;
 use crate::time::martian::LocalMars;
 use crate::time::earth::ExtraLocaleEarth;
 use crate::utils::filter::filter_list;
+use crate::time::mercury::LocalMercury;
 
 #[component]
 /// This component displays timezones from IANA DB + Celestial Timezones from RSAR DB
@@ -27,6 +28,7 @@ pub fn Timezones() -> impl IntoView {
         >
 
             <LocalMars/>
+            <LocalMercury/>
             <ExtraLocaleEarth/>
         </ul>
     }

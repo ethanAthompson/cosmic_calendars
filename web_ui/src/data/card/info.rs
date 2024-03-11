@@ -24,8 +24,7 @@ pub fn Page(name: &'static str) -> impl IntoView {
     let semiminor = create_rw_signal(-1.0);
     let mean_motion = create_rw_signal(-1.0);
     let orbit_type = create_rw_signal("".to_string());
-    let dark_topology_map = create_rw_signal("".to_string());
-    let light_topology_map = create_rw_signal("".to_string());
+    let map_src = create_rw_signal("".to_string());
 
     data_abstraction(
         name,
@@ -37,8 +36,7 @@ pub fn Page(name: &'static str) -> impl IntoView {
         semiminor,
         mean_motion,
         orbit_type,
-        dark_topology_map,
-        light_topology_map,
+        map_src
     );
 
     view! {
@@ -54,10 +52,7 @@ pub fn Page(name: &'static str) -> impl IntoView {
                 <div class="card-body">
                     <div class="container-fluid gap-3">
                         <div class="container-fluid">
-                            <AdjustThemedImage
-                                light=light_topology_map.get()
-                                dark=dark_topology_map.get()
-                            />
+                            <p class="fs-2 lead p-2">{map_src}</p>
                         </div>
                         <hr class="py-2"/>
                         <div class="container-fluid">
@@ -66,11 +61,11 @@ pub fn Page(name: &'static str) -> impl IntoView {
                                     <p class="lead">
                                         Data provided by
                                         <a
-                                            href="https://crates.io/crates/rust_solar"
+                                            href="https://github.com/ethanAthompson/cosmic_calendars/tree/main/osm_db"
                                             target="_blank"
                                             class="text-decoration-none"
                                         >
-                                            Rust Solar Library
+                                            OSM Database Library
                                             <i class="bi bi-box-arrow-in-left"></i>
                                         </a>
                                     </p>

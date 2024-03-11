@@ -17,7 +17,6 @@ use crate::stores::states::CosmicTimeZoneState;
 use crate::env::{LEFTCARD, RIGHTCARD};
 use crate::utils::select::*;
 
-/// Replace with rust_solar version of this..
 pub fn set_mars_tz() -> rust_solar::kepler::DateTime {
     let state = get_state::<CosmicTimeZoneState>("home-timezone-name");
 
@@ -146,46 +145,3 @@ pub fn MartianOffsetOptions(pos: &'static str) -> impl IntoView
         <SelectedMartianTimezone pos=pos tz=Martian::MTCp5 radio=11/>
     }
 }
-
-
-// #[component]
-// /// This component shows the martian timezone for each respective card
-// pub fn MartianTimezones(pos: &'static str) -> impl IntoView {
-
-//     view! {
-//         <Show
-//             when=move || pos == RIGHTCARD
-//             fallback=move || {
-//                 view! {
-//                     <CelestialSelectionLeft
-//                         tz_list=(move || {
-//                             let mut martian_tz = Vec::new();
-//                             for area in Martian::iter() {
-//                                 martian_tz.push(area.get_str("Name").unwrap());
-//                             }
-//                             martian_tz
-//                         })()
-
-//                         pos=LEFTCARD
-//                         body="Mars"
-//                     />
-//                 }
-//             }
-//         >
-
-//             <CelestialSelectionRight
-//                 tz_list=(move || {
-//                     let mut martian_tz = Vec::new();
-//                     for area in Martian::iter() {
-//                         martian_tz.push(area.get_str("Name").unwrap());
-//                     }
-//                     martian_tz
-//                 })()
-
-//                 pos=RIGHTCARD
-//                 body="Mars"
-//             />
-
-//         </Show>
-//     }
-// }

@@ -20,58 +20,58 @@ pub fn AsteroidRoutes() -> impl IntoView {
             />
 
             <Route
-                path="davida"
+                path="511-davida"
                 view=move || {
-                    view! { <Page name="davida"/> }
+                    view! { <Page name="511-davida"/> }
                 }
             />
 
             <Route
-                path="eros"
+                path="433-eros"
                 view=move || {
-                    view! { <Page name="eros"/> }
+                    view! { <Page name="433-eros"/> }
                 }
             />
 
             <Route
-                path="europa"
+                path="52-europa"
                 view=move || {
-                    view! { <Page name="europa"/> }
+                    view! { <Page name="52-europa"/> }
                 }
             />
 
             <Route
-                path="hebe"
+                path="6-hebe"
                 view=move || {
-                    view! { <Page name="hebe"/> }
+                    view! { <Page name="6-hebe"/> }
                 }
             />
 
             <Route
-                path="hygiea"
+                path="10-hygiea"
                 view=move || {
-                    view! { <Page name="hygiea"/> }
+                    view! { <Page name="10-hygiea"/> }
                 }
             />
 
             <Route
-                path="juno"
+                path="3-juno"
                 view=move || {
-                    view! { <Page name="juno"/> }
+                    view! { <Page name="3-juno"/> }
                 }
             />
 
             <Route
-                path="pallas"
+                path="2-pallas"
                 view=move || {
-                    view! { <Page name="pallas"/> }
+                    view! { <Page name="2-pallas"/> }
                 }
             />
 
             <Route
-                path="vesta"
+                path="4-vesta"
                 view=move || {
-                    view! { <Page name="vesta"/> }
+                    view! { <Page name="4-vesta"/> }
                 }
             />
 
@@ -91,28 +91,37 @@ pub fn Overview() -> impl IntoView {
                 <A class="btn btn-lg btn-outline-warning list-group-item display-5" href="ceres">
                     Ceres
                 </A>
-                <A class="btn btn-lg btn-outline-warning list-group-item display-5" href="davida">
+                <A
+                    class="btn btn-lg btn-outline-warning list-group-item display-5"
+                    href="511-davida"
+                >
                     Davida
                 </A>
-                <A class="btn btn-lg btn-outline-warning list-group-item display-5" href="eros">
+                <A class="btn btn-lg btn-outline-warning list-group-item display-5" href="433-eros">
                     Eros
                 </A>
-                <A class="btn btn-lg btn-outline-warning list-group-item display-5" href="europa">
+                <A
+                    class="btn btn-lg btn-outline-warning list-group-item display-5"
+                    href="52-europa"
+                >
                     Europa
                 </A>
-                <A class="btn btn-lg btn-outline-warning list-group-item display-5" href="hebe">
+                <A class="btn btn-lg btn-outline-warning list-group-item display-5" href="6-hebe">
                     Hebe
                 </A>
-                <A class="btn btn-lg btn-outline-warning list-group-item display-5" href="hygiea">
+                <A
+                    class="btn btn-lg btn-outline-warning list-group-item display-5"
+                    href="10-hygiea"
+                >
                     Hygiea
                 </A>
-                <A class="btn btn-lg btn-outline-warning list-group-item display-5" href="juno">
+                <A class="btn btn-lg btn-outline-warning list-group-item display-5" href="3-juno">
                     Juno
                 </A>
-                <A class="btn btn-lg btn-outline-warning list-group-item display-5" href="pallas">
+                <A class="btn btn-lg btn-outline-warning list-group-item display-5" href="2-pallas">
                     Pallas
                 </A>
-                <A class="btn btn-lg btn-outline-warning list-group-item display-5" href="vesta">
+                <A class="btn btn-lg btn-outline-warning list-group-item display-5" href="4-vesta">
                     Vesta
                 </A>
                 <A href="../" class="btn btn-lg btn-outline-danger">

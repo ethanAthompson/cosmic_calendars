@@ -60,73 +60,73 @@ pub fn Table() -> impl IntoView {
                 <tr>
                     <th scope="row">1</th>
                     <TableItem class="planet" bg="bg-success" item="Earth"/>
-                    <TableItem class="moon" bg="bg-danger" item="Europa"/>
-                    <TableItem class="asteroid" bg="bg-danger" item="Ceres"/>
-                    <TableItem class="exo-planet" bg="bg-danger" item="Kepler-22b"/>
+                    <TableItem class="moon" bg="bg-success" item="Europa"/>
+                    <TableItem class="asteroid" bg="bg-success" item="Ceres"/>
+                    <TableItem class="exo-planet" bg="bg-danger" item="Kepler-62b"/>
                     <TableItem class="comet" bg="bg-danger" item="Hailey"/>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
-                    <TableItem class="planet" bg="bg-danger" item="Jupiter"/>
-                    <TableItem class="moon" bg="bg-danger" item="Ganymede"/>
-                    <TableItem class="asteroid" bg="bg-danger" item="Davida"/>
+                    <TableItem class="planet" bg="bg-success" item="Jupiter"/>
+                    <TableItem class="moon" bg="bg-success" item="Ganymede"/>
+                    <TableItem class="asteroid" bg="bg-danger" item="511-Davida"/>
                     <TableItem class="exo-planet" bg="bg-danger" item="Kepler-186f"/>
                     <TableItem class="comet" bg="bg-danger" item="Hale-Bopp"/>
                 </tr>
                 <tr>
                     <th scope="row">3</th>
                     <TableItem class="planet" bg="bg-success" item="Mars"/>
-                    <TableItem class="moon" bg="bg-danger" item="Io"/>
-                    <TableItem class="asteroid" bg="bg-danger" item="Eros"/>
-                    <TableItem class="exo-planet" bg="bg-danger" item="Kepler-442b"/>
+                    <TableItem class="moon" bg="bg-success" item="Io"/>
+                    <TableItem class="asteroid" bg="bg-success" item="433-Eros"/>
+                    <TableItem class="exo-planet" bg="bg-danger" item="Kepler-62e"/>
                     <TableItem class="comet" bg="" item=""/>
                 </tr>
                 <tr>
                     <th scope="row">4</th>
-                    <TableItem class="planet" bg="bg-danger" item="Mercury"/>
-                    <TableItem class="moon" bg="bg-danger" item="Luna"/>
-                    <TableItem class="asteroid" bg="bg-danger" item="Europa"/>
+                    <TableItem class="planet" bg="bg-success" item="Mercury"/>
+                    <TableItem class="moon" bg="bg-success" item="Luna"/>
+                    <TableItem class="asteroid" bg="bg-danger" item="52-Europa"/>
                     <TableItem class="exo-planet" bg="" item=""/>
                     <TableItem class="comet" bg="" item=""/>
                 </tr>
                 <tr>
                     <th scope="row">5</th>
-                    <TableItem class="planet" bg="bg-danger" item="Neptune"/>
-                    <TableItem class="moon" bg="bg-danger" item="Titan"/>
-                    <TableItem class="asteroid" bg="bg-danger" item="Hebe"/>
+                    <TableItem class="planet" bg="bg-success" item="Neptune"/>
+                    <TableItem class="moon" bg="bg-success" item="Titan"/>
+                    <TableItem class="asteroid" bg="bg-success" item="6-Hebe"/>
                     <TableItem class="exo-planet" bg="" item=""/>
                     <TableItem class="comet" bg="" item=""/>
                 </tr>
                 <tr>
                     <th scope="row">6</th>
-                    <TableItem class="planet" bg="bg-danger" item="Pluto"/>
+                    <TableItem class="planet" bg="bg-success" item="Pluto"/>
                     <TableItem class="moon" bg="" item=""/>
-                    <TableItem class="asteroid" bg="bg-danger" item="Hygiea"/>
+                    <TableItem class="asteroid" bg="bg-danger" item="10-Hygiea"/>
                     <TableItem class="exo-planet" bg="" item=""/>
                     <TableItem class="comet" bg="" item=""/>
                 </tr>
                 <tr>
                     <th scope="row">7</th>
-                    <TableItem class="planet" bg="bg-danger" item="Saturn"/>
+                    <TableItem class="planet" bg="bg-success" item="Saturn"/>
                     <TableItem class="moon" bg="" item=""/>
-                    <TableItem class="asteroid" bg="bg-danger" item="Juno"/>
+                    <TableItem class="asteroid" bg="bg-danger" item="3-Juno"/>
                     <TableItem class="exo-planet" bg="" item=""/>
                     <TableItem class="comet" bg="" item=""/>
 
                 </tr>
                 <tr>
                     <th scope="row">8</th>
-                    <TableItem class="planet" bg="bg-danger" item="Uranus"/>
+                    <TableItem class="planet" bg="bg-success" item="Uranus"/>
                     <TableItem class="moon" bg="" item=""/>
-                    <TableItem class="asteroid" bg="bg-danger" item="Pallas"/>
+                    <TableItem class="asteroid" bg="bg-danger" item="2-Pallas"/>
                     <TableItem class="exo-planet" bg="" item=""/>
                     <TableItem class="comet" bg="" item=""/>
                 </tr>
                 <tr>
                     <th scope="row">9</th>
-                    <TableItem class="planet" bg="bg-danger" item="Venus"/>
+                    <TableItem class="planet" bg="bg-success" item="Venus"/>
                     <TableItem class="moon" bg="" item=""/>
-                    <TableItem class="asteroid" bg="bg-danger" item="Vesta"/>
+                    <TableItem class="asteroid" bg="bg-success" item="4-Vesta"/>
                     <TableItem class="exo-planet" bg="" item=""/>
                     <TableItem class="comet" bg="" item=""/>
                 </tr>
