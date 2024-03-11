@@ -12,7 +12,18 @@ use strum::{AsRefStr, EnumProperty, VariantArray};
 #[derive(Debug, Copy, Clone)]
 /// This structure represents the second planet from the sun
 pub struct Luna;
+impl Luna {
+    /// This method was inspired by chrono, so you can see the live mars date
+    pub fn now(&mut self, offset: Lunarian) -> DateTime {
+        let now = chrono::Utc::now();
+        let now = crate::julian::Julian.get_jd(now.year(), now.month() as i32, now.day() as i32, Lunarian::offset(&offset));
 
+        let date = self.to_date(now);
+        let time = Lunarian::now(&offset);
+
+        DateTime { date, time }
+    }
+}
 impl Body for Luna {
     /// A.D 1609 November 30, 12:00:00
     fn epoch(&self) -> f64 {

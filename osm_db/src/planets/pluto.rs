@@ -15,6 +15,21 @@ use super::EARTH_ROTATIONAL_PERIOD;
 #[derive(Debug, Copy, Clone)]
 /// This structure represents the dwarf planet from the sun
 pub struct Pluto;
+
+impl Pluto {
+    /// This method was inspired by chrono, so you can see the live mars date
+    pub fn now(&mut self, offset: Plutonian) -> DateTime {
+        let now = chrono::Utc::now();
+        let now = crate::julian::Julian.get_jd(now.year(), now.month() as i32, now.day() as i32, Plutonian::offset(&offset));
+
+        let date = self.to_date(now);
+        let time = Plutonian::now(&offset);
+
+        DateTime { date, time }
+    }
+}
+
+
 impl Body for Pluto {
     /// A.D 1930 February 18, 23:00:00
     fn epoch(&self) -> f64 {

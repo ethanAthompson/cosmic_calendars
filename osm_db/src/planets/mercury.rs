@@ -14,6 +14,19 @@ use super::EARTH_ROTATIONAL_PERIOD;
 /// This structure represents the first planet from the sun
 pub struct Mercury;
 
+impl Mercury {
+    /// This method was inspired by chrono, so you can see the live mars date
+    pub fn now(&mut self, offset: Mercurian) -> DateTime {
+        let now = chrono::Utc::now();
+        let now = crate::julian::Julian.get_jd(now.year(), now.month() as i32, now.day() as i32, Mercurian::offset(&offset));
+
+        let date = self.to_date(now);
+        let time = Mercurian::now(&offset);
+
+        DateTime { date, time }
+    }
+}
+
 
 impl Body for Mercury {
     /// A.D 1959 September 9, 12:00:00

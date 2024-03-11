@@ -18,7 +18,6 @@ use super::EARTH_ROTATIONAL_PERIOD;
 
 pub struct Jupiter;
 
-
 impl Body for Jupiter {
     /// A.D 1972 March 2, 12:00:00
     fn epoch(&self) -> f64 {
@@ -61,49 +60,47 @@ impl Body for Jupiter {
     }
 }
 
-
 /// Similar format as mars..
 #[derive(Default, Debug, Copy, Clone, AsRefStr, EnumProperty, VariantArray)]
 pub enum Jupiterian {
-    #[strum(props(Code = "LYT", Name= "Luminary Time", Offset = "-5.9599998", East = "-180", West = "-150"))]
+    #[strum(props(Code = "LYT", Name = "Luminary Time", Offset = "-5.9599998", East = "-180", West = "-150"))]
     /// Jupiter Coordinated Time - 6
     JTCn6,
-    #[strum(props(Code = "SLT", Name= "Sentinel Time", Offset = "-4.9666665", East = "-150", West = "-120"))]
+    #[strum(props(Code = "SLT", Name = "Sentinel Time", Offset = "-4.9666665", East = "-150", West = "-120"))]
     /// Jupiter Coordinated Time - 5
     JTCn5,
-    #[strum(props(Code = "AXT", Name= "Apex Time", Offset = "-3.9733332", East = "-120", West = "-90"))]
+    #[strum(props(Code = "AXT", Name = "Apex Time", Offset = "-3.9733332", East = "-120", West = "-90"))]
     /// Jupiter Coordinated Time - 4
     JTCn4,
-    #[strum(props(Code = "NET", Name= "Nebulae Time", Offset = "-2.9799999", East = "-90", West = "-60"))]
+    #[strum(props(Code = "NET", Name = "Nebulae Time", Offset = "-2.9799999", East = "-90", West = "-60"))]
     /// Jupiter Coordinated Time - 3
     JTCn3,
-    #[strum(props(Code = "ET", Name= "Echo Time", Offset = "-1.9866666", East = "-60", West = "-30"))]
+    #[strum(props(Code = "ET", Name = "Echo Time", Offset = "-1.9866666", East = "-60", West = "-30"))]
     /// Jupiter Coordinated Time - 2
     JTCn2,
-    #[strum(props(Code = "RAT", Name= "Redstormia Time", Offset = "-0.9933333", East = "-30", West = "0"))]
+    #[strum(props(Code = "RAT", Name = "Redstormia Time", Offset = "-0.9933333", East = "-30", West = "0"))]
     /// Jupiter Coordinated Time - 1
     JTCn1,
     #[default]
-    #[strum(props(Code = "CTT", Name= "Citadel Time", Offset = "0.0", East = "0", West = "30"))]
+    #[strum(props(Code = "CTT", Name = "Citadel Time", Offset = "0.0", East = "0", West = "30"))]
     /// Jupiter Coordinated Time
     JTC,
-    #[strum(props(Code = "JAT", Name= "Jovia Time", Offset = "0.9933333", East = "30", West = "60"))]
+    #[strum(props(Code = "JAT", Name = "Jovia Time", Offset = "0.9933333", East = "30", West = "60"))]
     /// Jupiter Coordinated Time + 1
     JTCp1,
-    #[strum(props(Code = "SPT", Name= "Scapeia Time", Offset = "1.9866666", East = "60", West = "90"))]
+    #[strum(props(Code = "SPT", Name = "Scapeia Time", Offset = "1.9866666", East = "60", West = "90"))]
     /// Jupiter Coordinated Time + 2
     JTCp2,
-    #[strum(props(Code = "SST", Name= "Solis Time", Offset = "2.9799999", East = "90", West = "120"))]
+    #[strum(props(Code = "SST", Name = "Solis Time", Offset = "2.9799999", East = "90", West = "120"))]
     /// Jupiter Coordinated Time + 3
     JTCp3,
-    #[strum(props(Code = "AAT", Name= "Aurora Time", Offset = "3.9733332", East = "120", West = "150"))]
+    #[strum(props(Code = "AAT", Name = "Aurora Time", Offset = "3.9733332", East = "120", West = "150"))]
     /// Jupiter Coordinated Time + 4
     JTCp4,
-    #[strum(props(Code = "SAT", Name= "Solaria Time", Offset = "4.9666665", East = "150", West = "180"))]
+    #[strum(props(Code = "SAT", Name = "Solaria Time", Offset = "4.9666665", East = "150", West = "180"))]
     /// Jupiter Coordinated Time + 5
     JTCp5,
 }
-
 
 impl TimeZone for Jupiterian {
     fn millis(&self) -> f64 {
@@ -184,5 +181,18 @@ impl TimeZone for Jupiterian {
             offset_name: self.as_ref().to_string(),
             hour_type: HourType::new(&HourType::Unknown, hour as u8),
         }
+    }
+}
+
+impl Jupiter {
+    /// This method was inspired by chrono, so you can see the live mars date
+    pub fn now(&mut self, offset: Jupiterian) -> DateTime {
+        let now = chrono::Utc::now();
+        let now = crate::julian::Julian.get_jd(now.year(), now.month() as i32, now.day() as i32, Jupiterian::offset(&offset));
+
+        let date = self.to_date(now);
+        let time = Jupiterian::now(&offset);
+
+        DateTime { date, time }
     }
 }

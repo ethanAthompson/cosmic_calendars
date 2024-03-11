@@ -13,7 +13,18 @@ use strum::{AsRefStr, EnumProperty, VariantArray};
 #[derive(Debug, Copy, Clone)]
 /// This structure represents the second planet from the sun
 pub struct Titan;
+impl Titan {
+    /// This method was inspired by chrono, so you can see the live mars date
+    pub fn now(&mut self, offset: Titanian) -> DateTime {
+        let now = chrono::Utc::now();
+        let now = crate::julian::Julian.get_jd(now.year(), now.month() as i32, now.day() as i32, Titanian::offset(&offset));
 
+        let date = self.to_date(now);
+        let time = Titanian::now(&offset);
+
+        DateTime { date, time }
+    }
+}
 
 impl Body for Titan {
     /// A.D 1655 March 25, 12:00:00

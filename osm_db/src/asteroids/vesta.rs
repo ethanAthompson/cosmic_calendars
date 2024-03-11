@@ -12,6 +12,18 @@ use strum::{AsRefStr, EnumProperty, VariantArray};
 /// This structure represents the second planet from the sun
 pub struct Vesta;
 
+impl Vesta {
+    /// This method was inspired by chrono, so you can see the live mars date
+    pub fn now(&mut self, offset: Vestanian) -> DateTime {
+        let now = chrono::Utc::now();
+        let now = crate::julian::Julian.get_jd(now.year(), now.month() as i32, now.day() as i32, Vestanian::offset(&offset));
+
+        let date = self.to_date(now);
+        let time = Vestanian::now(&offset);
+
+        DateTime { date, time }
+    }
+}
 
 impl Body for Vesta {
     /// A.D. 1807 March 29, 12:00:00
