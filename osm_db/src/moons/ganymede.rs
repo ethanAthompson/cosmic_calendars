@@ -26,7 +26,7 @@ impl Ganymede {
 impl Body for Ganymede {
     /// A.D 1610 January 7, 12:00:00
     fn epoch(&self) -> f64 {
-        2309107e6
+        2.309107e6
     }
 
     fn orbital_eccentricity(&self) -> f64 {

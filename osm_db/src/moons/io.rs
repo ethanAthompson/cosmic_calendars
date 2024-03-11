@@ -26,7 +26,7 @@ impl Io {
 impl Body for Io {
     /// A.D 1610 January 8, 12:00:00
     fn epoch(&self) -> f64 {
-        2309108e6
+        2.309108e6
     }
 
     fn orbital_eccentricity(&self) -> f64 {

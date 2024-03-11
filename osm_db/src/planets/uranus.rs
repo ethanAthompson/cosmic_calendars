@@ -31,7 +31,7 @@ impl Uranus {
 impl Body for Uranus {
     /// A.D 1781 March 12, 12:00:00
     fn epoch(&self) -> f64 {
-        2_371_629.00e6
+        2.371629e6
     }
 
     fn orbital_eccentricity(&self) -> f64 {

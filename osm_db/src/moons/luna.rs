@@ -27,7 +27,7 @@ impl Luna {
 impl Body for Luna {
     /// A.D 1609 November 30, 12:00:00
     fn epoch(&self) -> f64 {
-        2309069e6
+        2.309069e6
     }
 
     fn orbital_eccentricity(&self) -> f64 {

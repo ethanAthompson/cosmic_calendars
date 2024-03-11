@@ -27,7 +27,7 @@ impl Ceres {
 impl Body for Ceres {
     /// A.D. 1801 January 1, 12:00:00
     fn epoch(&self) -> f64 {
-        2378862e6
+        2.378862e6
     }
 
     fn orbital_eccentricity(&self) -> f64 {

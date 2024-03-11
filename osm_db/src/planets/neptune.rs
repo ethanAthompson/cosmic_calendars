@@ -31,7 +31,7 @@ impl Neptune {
 impl Body for Neptune {
     /// A.D 1846 September 23, 12:00:00
     fn epoch(&self) -> f64 {
-        2395563e6
+        2.395563e6
     }
 
     fn orbital_eccentricity(&self) -> f64 {

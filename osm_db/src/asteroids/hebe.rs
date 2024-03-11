@@ -28,7 +28,7 @@ impl Hebe {
 impl Body for Hebe {
     /// A.D 1847 July 1, 12:00:00
     fn epoch(&self) -> f64 {
-        2395844e6
+        2.395844e6
     }
 
     fn orbital_eccentricity(&self) -> f64 {

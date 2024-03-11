@@ -21,7 +21,7 @@ pub struct Jupiter;
 impl Body for Jupiter {
     /// A.D 1972 March 2, 12:00:00
     fn epoch(&self) -> f64 {
-        2441379e6
+        2.441379e6
     }
 
     fn orbital_eccentricity(&self) -> f64 {

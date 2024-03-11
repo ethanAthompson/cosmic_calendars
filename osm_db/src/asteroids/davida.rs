@@ -15,7 +15,7 @@ pub struct Davida;
 impl Body for Davida {
     /// A.D. 1903 May 30, 12:00:00
     fn epoch(&self) -> f64 {
-        2416265e6
+        2.416265e6
     }
 
     fn orbital_eccentricity(&self) -> f64 {

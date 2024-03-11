@@ -15,7 +15,7 @@ pub struct Juno;
 impl Body for Juno {
     /// A.D. 1804 September 1, 12:00:00
     fn epoch(&self) -> f64 {
-        2380201e6
+        2.380201e6
     }
 
     fn orbital_eccentricity(&self) -> f64 {

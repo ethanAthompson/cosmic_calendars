@@ -1,5 +1,9 @@
 # Awesome Database (OSM DB)
 
+> Notice!
+>
+> I will not be working on this project unless noted otherwise..
+> 
 A library for cosmic calendars. 
 
 <!-- ## How to Install? 

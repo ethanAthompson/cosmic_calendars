@@ -15,7 +15,7 @@ pub struct Hygiea;
 impl Body for Hygiea {
     /// A.D. 1849 April 12, 12:00:00
     fn epoch(&self) -> f64 {
-        2396495e6
+        2.396495e6
     }
 
     fn orbital_eccentricity(&self) -> f64 {

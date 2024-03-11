@@ -27,7 +27,7 @@ impl Eros {
 impl Body for Eros {
     /// A.D. 1898 August 13, 12:00:00
     fn epoch(&self) -> f64 {
-        2414515e6
+        2.414515e6
     }
 
     fn orbital_eccentricity(&self) -> f64 {

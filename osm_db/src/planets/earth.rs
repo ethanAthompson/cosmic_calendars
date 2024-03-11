@@ -12,8 +12,9 @@ use crate::{
 /// This structure represents our home planet
 pub struct Earth;
 
-// ! Please take data from main astronomy calculations for all the other bodies :-)
+
 impl Body for Earth {
+    /// This is not correct..
     fn epoch(&self) -> f64 {
         0.0
     }

@@ -15,7 +15,7 @@ pub struct Pallas;
 impl Body for Pallas {
     /// A.D. 1802 March 28, 12:00:00
     fn epoch(&self) -> f64 {
-        2379313e6
+        2.379313e6
     }
 
     fn orbital_eccentricity(&self) -> f64 {

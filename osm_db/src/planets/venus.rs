@@ -29,7 +29,7 @@ impl Venus {
 impl Body for Venus {
     /// A.D 1990 August 10, 12:00:00:0
     fn epoch(&self) -> f64 {
-        2_448_114.00e6
+        2.448_114e6
     }
 
     fn orbital_eccentricity(&self) -> f64 {

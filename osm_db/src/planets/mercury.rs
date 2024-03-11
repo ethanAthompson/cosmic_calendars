@@ -31,7 +31,7 @@ impl Mercury {
 impl Body for Mercury {
     /// A.D 1959 September 9, 12:00:00
     fn epoch(&self) -> f64 {
-        2436821e6
+        2.436821e6
     }
 
     fn orbital_eccentricity(&self) -> f64 {

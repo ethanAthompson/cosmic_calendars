@@ -31,7 +31,7 @@ impl Saturn {
 impl Body for Saturn {
     /// A.D 1997 October 15, 12:00:00
     fn epoch(&self) -> f64 {
-        2450737e6
+        2.450737e6
     }
 
     fn orbital_eccentricity(&self) -> f64 {

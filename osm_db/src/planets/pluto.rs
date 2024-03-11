@@ -33,7 +33,7 @@ impl Pluto {
 impl Body for Pluto {
     /// A.D 1930 February 18, 23:00:00
     fn epoch(&self) -> f64 {
-        2_426_026.00e6
+        2.426026e6
     }
 
     fn orbital_eccentricity(&self) -> f64 {

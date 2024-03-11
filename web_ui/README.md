@@ -1,6 +1,8 @@
 # Rust Zone
 
-> This is the UI presented in the Nasa Hunch Program.
+> Notice!
+>
+> I will not be working on this project unless noted otherwise..
 >
 > 
 <!-- Soon -->

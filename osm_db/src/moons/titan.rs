@@ -29,7 +29,7 @@ impl Titan {
 impl Body for Titan {
     /// A.D 1655 March 25, 12:00:00
     fn epoch(&self) -> f64 {
-        2325620e6
+        2.325620e6
     }
 
     fn orbital_eccentricity(&self) -> f64 {
